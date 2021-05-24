@@ -1,10 +1,10 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: validate
+    show-sql: false
   datasource:
-    url: jdbc:postgresql://ocalhost:5432/mystore
+    url: jdbc:postgresql://localhost:5432/mystore
     username: postgres
     password: Viking07
   flyway:

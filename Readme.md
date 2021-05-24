@@ -1,0 +1,41 @@
+#MyStore (lesson 1)
+##Entities:
++ User
+  - id
+  - name
+  - password
+  - email
+  - archive
+  - role
+  - bucket
++ Product
+  - id
+  - title
+  - price
+  - category
++ Order
+  - id
+  - created
+  - updated
+  - user
+  - sum
+  - address
+  - details
+  - status
++ Bucket
+  - id
+  - user
+  - products
++ Category
+  - id
+  - title
++ Role
+  -  CLIENT
+  -  MANAGER
+  -  ADMIN
++ OrderStatus
+  - NEW
+  - APPROVED
+  - CANCELED
+  - PAID
+  - CLOSED

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>MyStore Home Page</title>
+</head>
+<body>
+<table>
+    <form th:action="@{/auth}" method="post">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <button type="submit">Log in</button>
+    </form>
+</table>
+</body>
+</html>
