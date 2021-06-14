@@ -1,5 +1,6 @@
 package com.litvak.mystore_lesson1.controllers;
 
+import com.litvak.mystore_lesson1.aspect.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,12 @@ public class MainController {
     @RequestMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @RequestMapping("/logging")
+    public String logging(Model model) {
+        model.addAttribute("logging", Logger.loggerInfo);
+        return "logging";
     }
 
     @RequestMapping("/login-error") // чтобы пользователь попал на 404-page
