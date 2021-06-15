@@ -12,6 +12,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+
 
 @Endpoint
 public class OrdersEndpoint {
@@ -44,10 +47,13 @@ public class OrdersEndpoint {
         ws.setId(order.getId());
         ws.setUsername(order.getUser().getName());
         ws.setStatus(String.valueOf(order.getStatus()));
-//ws.setSumma(55);
-//ws.setProductAmount(new BigInteger("5"));
-
-//ws.setCreatedDate();
+        ws.setSumma(order.getSum());
+        ws.setProductAmount(order.getDetails().get(0).getAmount());
+        try {
+            ws.setCreatedDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(order.getCreated().toString()));
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
         return ws;
     }
 }
