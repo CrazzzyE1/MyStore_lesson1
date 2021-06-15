@@ -41,3 +41,9 @@ function renderItem(productJson) {
         "<td><a href='/products'" + product.id + "/bucket'>Add to bucket</a></td>" +
         "</tr>");
 }
+
+function addToBucket(id) {
+    stomp.send("/app/toBucket", {}, JSON.stringify({
+        'id': id
+    }));
+}

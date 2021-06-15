@@ -50,4 +50,10 @@ public class ProductController {
     public void messageAddProduct(ProductDTO dto) {
         productService.addProduct(dto);
     }
+
+    @MessageMapping("/toBucket")
+    public void messageToBucket(ProductDTO dto,
+                                Principal principal) {
+        productService.addToUserBucket(dto.getId(), principal.getName());
+    }
 }
