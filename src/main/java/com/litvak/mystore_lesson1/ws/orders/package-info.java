@@ -5,5 +5,5 @@
 // Generated on: 2021.06.15 at 07:33:29 PM MSK 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://litvak.com/mystore_lesson1/ws/products", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.litvak.mystore_lesson1.ws.products;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://litvak.com/mystore_lesson1/ws/orders", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.litvak.mystore_lesson1.ws.orders;

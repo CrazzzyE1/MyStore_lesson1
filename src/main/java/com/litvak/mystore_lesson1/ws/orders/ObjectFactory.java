@@ -6,7 +6,7 @@
 //
 
 
-package com.litvak.mystore_lesson1.ws.products;
+package com.litvak.mystore_lesson1.ws.orders;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.litvak.mystore_lesson1.ws.products package. 
+ * generated in the com.litvak.mystore_lesson1.ws.orders package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,34 +30,34 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.litvak.mystore_lesson1.ws.products
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.litvak.mystore_lesson1.ws.orders
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link GetProductsRequest }
+     * Create an instance of {@link GetOrdersResponse }
      * 
      */
-    public GetProductsRequest createGetProductsRequest() {
-        return new GetProductsRequest();
+    public GetOrdersResponse createGetOrdersResponse() {
+        return new GetOrdersResponse();
     }
 
     /**
-     * Create an instance of {@link GetProductsResponse }
+     * Create an instance of {@link OrdersWS }
      * 
      */
-    public GetProductsResponse createGetProductsResponse() {
-        return new GetProductsResponse();
+    public OrdersWS createOrdersWS() {
+        return new OrdersWS();
     }
 
     /**
-     * Create an instance of {@link ProductsWS }
+     * Create an instance of {@link GetOrdersRequest }
      * 
      */
-    public ProductsWS createProductsWS() {
-        return new ProductsWS();
+    public GetOrdersRequest createGetOrdersRequest() {
+        return new GetOrdersRequest();
     }
 
 }

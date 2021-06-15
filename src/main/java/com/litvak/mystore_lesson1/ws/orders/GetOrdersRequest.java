@@ -6,7 +6,7 @@
 //
 
 
-package com.litvak.mystore_lesson1.ws.products;
+package com.litvak.mystore_lesson1.ws.orders;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "getProductsRequest")
-public class GetProductsRequest {
+@XmlRootElement(name = "getOrdersRequest")
+public class GetOrdersRequest {
 
 
 }
