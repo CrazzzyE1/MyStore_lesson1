@@ -19,10 +19,10 @@
     <xs:complexType name="ordersWS">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
-            <xs:element name="created_date" type="xs:dateTime"/>
+<!--            <xs:element name="created_date" type="xs:dateTime"/>-->
             <xs:element name="username" type="xs:string"/>
-            <xs:element name="summa" type="xs:double"/>
-            <xs:element name="product_amount" type="xs:integer"/>
+<!--            <xs:element name="summa" type="xs:double"/>-->
+<!--            <xs:element name="product_amount" type="xs:integer"/>-->
             <xs:element name="status" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>

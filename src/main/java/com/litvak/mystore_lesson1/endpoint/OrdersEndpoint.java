@@ -1,28 +1,29 @@
 package com.litvak.mystore_lesson1.endpoint;
 
 import com.litvak.mystore_lesson1.domain.Order;
-import com.litvak.mystore_lesson1.dto.ProductDTO;
 import com.litvak.mystore_lesson1.service.OrderService;
-import com.litvak.mystore_lesson1.service.ProductService;
+import com.litvak.mystore_lesson1.service.UserService;
 import com.litvak.mystore_lesson1.ws.orders.GetOrdersRequest;
 import com.litvak.mystore_lesson1.ws.orders.GetOrdersResponse;
 import com.litvak.mystore_lesson1.ws.orders.OrdersWS;
-import com.litvak.mystore_lesson1.ws.products.GetProductsRequest;
-import com.litvak.mystore_lesson1.ws.products.GetProductsResponse;
-import com.litvak.mystore_lesson1.ws.products.ProductsWS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import java.math.BigInteger;
 
 @Endpoint
 public class OrdersEndpoint {
     public static final String NAMESPACE_URL = "http://litvak.com/mystore_lesson1/ws/orders";
 
     private OrderService orderService;
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public OrdersEndpoint(OrderService orderService) {
@@ -41,25 +42,12 @@ public class OrdersEndpoint {
     private OrdersWS createOrderWs(Order order) {
         OrdersWS ws = new OrdersWS();
         ws.setId(order.getId());
-ws.setSumma(55);
-ws.setProductAmount(new BigInteger("5"));
-ws.setUsername("username");
+        ws.setUsername(order.getUser().getName());
+        ws.setStatus(String.valueOf(order.getStatus()));
+//ws.setSumma(55);
+//ws.setProductAmount(new BigInteger("5"));
+
 //ws.setCreatedDate();
         return ws;
     }
-
-//    public GetProductsResponse getProductWS(@RequestPayload GetProductsRequest request) {
-//        GetProductsResponse response = new GetProductsResponse();
-//        productService.getAll()
-//                .forEach(dto -> response.getProducts().add(createProductWs(dto)));
-//        return response;
-//    }
-//
-//    private ProductsWS createProductWs(ProductDTO dto) {
-//        ProductsWS ws = new ProductsWS();
-//        ws.setId(dto.getId());
-//        ws.setPrice(Double.parseDouble(dto.getPrice().toString()));
-//        ws.setTitle(dto.getTitle());
-//        return ws;
-//    }
 }
