@@ -1,7 +1,7 @@
 var stomp = null;
 
 // подключаемся к серверу по окончании загрузки страницы
-window.onload = function() {
+window.onload = function () {
     connect();
 };
 
@@ -21,7 +21,9 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#send" ).click(function() { sendContent(); });
+    $("#send").click(function () {
+        sendContent();
+    });
 });
 
 // отправка сообщения на сервер
@@ -38,12 +40,16 @@ function renderItem(productJson) {
     $("#table").append("<tr>" +
         "<td>" + product.title + "</td>" +
         "<td>" + product.price + "</td>" +
-        "<td><a href='/products'" + product.id + "/bucket'>Add to bucket</a></td>" +
+        "<td>" +
+        "<a onclick=\"javascript:addToBucket(\'" + product.id + "\');\">Add to bucket</a>" +
+        "</td>" +
         "</tr>");
+
 }
 
 function addToBucket(id) {
     stomp.send("/app/toBucket", {}, JSON.stringify({
         'id': id
     }));
+    $("#bucket").text("Bucket " + "Sum" + "Count");
 }
