@@ -15,7 +15,7 @@
                     <td><a th:href="@{/products}">Products</a></td>
                     <td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')"><a th:href="@{/users}">Users</a></td>
                     <td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')"><a th:href="@{/logging}">Logs</a></td>
-                    <td sec:authorize="isAuthenticated()"><a th:href="@{/bucket}">Bucket</a></td>
+                    <td sec:authorize="isAuthenticated()"><a id="bucket" th:href="@{/bucket}">Bucket</a></td>
                 </tr>
             </table>
         </td>
