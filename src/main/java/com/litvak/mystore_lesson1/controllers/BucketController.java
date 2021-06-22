@@ -18,11 +18,10 @@ public class BucketController {
     }
 
     @GetMapping("/bucket")
-    public String aboutBucket(Model model, Principal principal){
-        if(principal == null){
+    public String aboutBucket(Model model, Principal principal) {
+        if (principal == null) {
             model.addAttribute("bucket", new BucketDTO());
-        }
-        else {
+        } else {
             BucketDTO bucketDto = bucketService.getBucketByUser(principal.getName());
             model.addAttribute("bucket", bucketDto);
         }

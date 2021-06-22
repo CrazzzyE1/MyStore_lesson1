@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo Shop</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<div class="mypanel"></div>
+
+<script>
+    $.getJSON('http://localhost:8080/news/randomNews', function (data) {
+
+        var text = `<div style="width: 400px">
+                    <h3>${data.title}</h3>
+                    <h4> ${data.description}</h4>
+                    <a target="_blank" href="${data.url}">
+                   <img style="width: 350px" src="${data.urlToImage}">
+                    </a>
+                    </div>`
+        $(".mypanel").html(text);
+    });
+</script>
 
 </body>
 </html>

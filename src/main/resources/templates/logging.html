@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Demo Shop</title>
@@ -8,9 +8,9 @@
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <div>
     <table>
-    <tr th:each="log : ${logging}">
-        <td th:text="${log}"></td>
-    </tr>
+        <tr th:each="log : ${logging}">
+            <td th:text="${log}"></td>
+        </tr>
     </table>
 </div>
 </body>

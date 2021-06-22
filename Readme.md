@@ -1,41 +1,43 @@
-#MyStore (lesson 1)
-##Entities:
+# MyStore (lesson 1)
+
+## Entities:
+
 + User
-  - id
-  - name
-  - password
-  - email
-  - archive
-  - role
-  - bucket
+    - id
+    - name
+    - password
+    - email
+    - archive
+    - role
+    - bucket
 + Product
-  - id
-  - title
-  - price
-  - category
+    - id
+    - title
+    - price
+    - category
 + Order
-  - id
-  - created
-  - updated
-  - user
-  - sum
-  - address
-  - details
-  - status
+    - id
+    - created
+    - updated
+    - user
+    - sum
+    - address
+    - details
+    - status
 + Bucket
-  - id
-  - user
-  - products
+    - id
+    - user
+    - products
 + Category
-  - id
-  - title
+    - id
+    - title
 + Role
-  -  CLIENT
-  -  MANAGER
-  -  ADMIN
+    - CLIENT
+    - MANAGER
+    - ADMIN
 + OrderStatus
-  - NEW
-  - APPROVED
-  - CANCELED
-  - PAID
-  - CLOSED
+    - NEW
+    - APPROVED
+    - CANCELED
+    - PAID
+    - CLOSED
