@@ -9,6 +9,7 @@ import com.litvak.mystore_lesson1.mapper.ProductMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
             bucketService.addProducts(bucket, Collections.singletonList(productId));
         }
     }
+
     @Override
     @Transactional
     public void addProduct(ProductDTO dto) {
