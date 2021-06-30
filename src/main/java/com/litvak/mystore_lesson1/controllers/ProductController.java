@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.util.List;
-
+// Заглушка
 @Controller
 @RequestMapping("/products")
 public class ProductController {
