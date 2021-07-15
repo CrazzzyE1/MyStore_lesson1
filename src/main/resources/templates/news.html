@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product list</title>
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+
+<table border="1" align="center" id="table" width="1050px">
+    <tr>
+        <td>Photo</td>
+        <td>Title</td>
+        <td>Description</td>
+    </tr>
+    <tr th:each="newsItem : ${news}">
+        <td style="width: 350px">  <a target="_blank" th:href="${newsItem.url}" ><img style="width: 350px" th:src="${newsItem.urlToImage}"></a></td>
+        <td style="width: 350px" th:text="${newsItem.title}">Title</td>
+        <td style="width: 350px" th:text="${newsItem.description}">Description</td>
+    </tr>
+</table>
+</body>
+</html>
