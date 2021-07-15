@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class BucketDTO {
     private int amountProducts;
-    private Double sum;
+    private double sum;
     private List<BucketDetailDTO> bucketDetails = new ArrayList<>();
 
     public void aggregate() {
