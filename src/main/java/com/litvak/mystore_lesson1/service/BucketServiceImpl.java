@@ -2,14 +2,12 @@ package com.litvak.mystore_lesson1.service;
 
 import com.litvak.mystore_lesson1.dao.BucketRepository;
 import com.litvak.mystore_lesson1.dao.ProductRepository;
-import com.litvak.mystore_lesson1.domain.Bucket;
-import com.litvak.mystore_lesson1.domain.Product;
-import com.litvak.mystore_lesson1.domain.User;
+import com.litvak.mystore_lesson1.domain.*;
 import com.litvak.mystore_lesson1.dto.BucketDTO;
 import com.litvak.mystore_lesson1.dto.BucketDetailDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,15 +20,17 @@ public class BucketServiceImpl implements BucketService {
     private final BucketRepository bucketRepository;
     private final ProductRepository productRepository;
     private final UserService userService;
+    private final OrderService orderService;
 
-    public BucketServiceImpl(BucketRepository bucketRepository, ProductRepository productRepository, UserService userService) {
+    public BucketServiceImpl(BucketRepository bucketRepository, ProductRepository productRepository, UserService userService, OrderService orderService) {
         this.bucketRepository = bucketRepository;
         this.productRepository = productRepository;
         this.userService = userService;
+        this.orderService = orderService;
     }
 
     @Override
-    @Transactional
+    @javax.transaction.Transactional
     public Bucket createBucket(User user, List<Long> productIds) {
         Bucket bucket = new Bucket();
         bucket.setUser(user);
@@ -70,8 +70,8 @@ public class BucketServiceImpl implements BucketService {
             if (detail == null) {
                 mapByProductId.put(product.getId(), new BucketDetailDTO(product));
             } else {
-                detail.setAmount(detail.getAmount().add(new BigDecimal("1.0")));
-                detail.setSum(detail.getSum() + Double.parseDouble(product.getPrice().toString()));
+                detail.setAmount(detail.getAmount() + 1.0);
+                detail.setSum(detail.getSum() + product.getPrice());
             }
         }
 
@@ -79,5 +79,36 @@ public class BucketServiceImpl implements BucketService {
         bucketDTO.aggregate();
 
         return bucketDTO;
+    }
+
+    @Transactional
+    @Override
+    public void commitBucketToOrder(String username) {
+        User user = userService.findByName(username);
+        if(user == null){
+            throw new RuntimeException("User is not found");
+        }
+        Bucket bucket = user.getBucket();
+        if(bucket == null || bucket.getProducts().isEmpty()){
+            return;
+        }
+        Order order = new Order();
+        order.setStatus(OrderStatus.NEW);
+        order.setUser(user);
+        Map<Product, Long> productWithAmount = bucket.getProducts().stream()
+                .collect(Collectors.groupingBy(product -> product, Collectors.counting()));
+        List<OrderDetails> orderDetails = productWithAmount.entrySet().stream()
+                .map(pair -> new OrderDetails(order, pair.getKey(), pair.getValue()))
+                .collect(Collectors.toList());
+        BigDecimal total = new BigDecimal(orderDetails.stream()
+                .map(detail -> detail.getPrice().multiply(detail.getAmount()))
+                .mapToDouble(BigDecimal::doubleValue).sum());
+        order.setDetails(orderDetails);
+        order.setSum(total);
+        order.setAddress("none");
+
+        orderService.saveOrder(order);
+        bucket.getProducts().clear();
+        bucketRepository.save(bucket);
     }
 }

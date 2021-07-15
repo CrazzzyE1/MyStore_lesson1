@@ -7,9 +7,9 @@ import com.litvak.mystore_lesson1.domain.User;
 import com.litvak.mystore_lesson1.dto.ProductDTO;
 import com.litvak.mystore_lesson1.mapper.ProductMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
+    @javax.transaction.Transactional
     public void addToUserBucket(Long productId, String username) {
         User user = userService.findByName(username);
         if (user == null) {
@@ -59,5 +59,11 @@ public class ProductServiceImpl implements ProductService {
         Product product = mapper.toProduct(dto);
         Product savedProduct = productRepository.save(product);
         template.convertAndSend("/topic/products", ProductMapper.MAPPER.fromProduct(savedProduct));
+    }
+
+    @Override
+    public ProductDTO getById(Long id) {
+        Product product = productRepository.findById(id).orElse(new Product());
+        return ProductMapper.MAPPER.fromProduct(product);
     }
 }

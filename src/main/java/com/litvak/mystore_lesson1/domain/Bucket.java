@@ -27,7 +27,7 @@ public class Bucket {
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "buckets_products",
+    @JoinTable(name = "bucket_products",
             joinColumns = @JoinColumn(name = "bucket_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;

@@ -51,5 +51,4 @@ function addToBucket(id) {
     stomp.send("/app/toBucket", {}, JSON.stringify({
         'id': id
     }));
-    $("#bucket").text("Bucket " + "Sum" + "Count");
 }

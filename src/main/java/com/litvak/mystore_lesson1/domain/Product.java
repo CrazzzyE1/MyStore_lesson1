@@ -24,7 +24,7 @@ public class Product {
     private Long id;
 
     private String title;
-    private BigDecimal price;
+    private Double price;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "products_categories",

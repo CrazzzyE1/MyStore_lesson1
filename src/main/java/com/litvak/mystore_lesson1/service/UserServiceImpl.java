@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @javax.transaction.Transactional
     public boolean save(UserDTO userDTO) {
         if (!Objects.equals(userDTO.getPassword(), userDTO.getMatchingPassword())) {
             throw new RuntimeException("Bad password");
