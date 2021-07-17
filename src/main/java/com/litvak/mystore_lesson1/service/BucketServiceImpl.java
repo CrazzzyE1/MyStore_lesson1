@@ -19,7 +19,8 @@ public class BucketServiceImpl implements BucketService {
     private final UserService userService;
     private final OrderService orderService;
 
-    public BucketServiceImpl(BucketRepository bucketRepository, ProductRepository productRepository, UserService userService, OrderService orderService) {
+    public BucketServiceImpl(BucketRepository bucketRepository, ProductRepository productRepository,
+                             UserService userService, OrderService orderService) {
         this.bucketRepository = bucketRepository;
         this.productRepository = productRepository;
         this.userService = userService;
@@ -82,11 +83,11 @@ public class BucketServiceImpl implements BucketService {
     @Override
     public void commitBucketToOrder(String username) {
         User user = userService.findByName(username);
-        if(user == null){
+        if (user == null) {
             throw new RuntimeException("User is not found");
         }
         Bucket bucket = user.getBucket();
-        if(bucket == null || bucket.getProducts().isEmpty()){
+        if (bucket == null || bucket.getProducts().isEmpty()) {
             return;
         }
         Order order = new Order();
@@ -115,7 +116,9 @@ public class BucketServiceImpl implements BucketService {
         User user = userService.findByName(name);
         Bucket bucket = user.getBucket();
         List<Product> products = bucket.getProducts();
-        Optional<Product> product = products.stream().filter(value -> value.getId().equals(id)).findFirst();
+        Optional<Product> product = products.stream()
+                .filter(value -> value.getId().equals(id))
+                .findFirst();
         products.remove(product.orElse(null));
     }
 }
