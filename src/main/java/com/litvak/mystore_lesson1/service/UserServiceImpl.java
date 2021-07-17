@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<UserDTO> getAll() {
         return userRepository.findAll().stream()
                 .map(this::toDto)
