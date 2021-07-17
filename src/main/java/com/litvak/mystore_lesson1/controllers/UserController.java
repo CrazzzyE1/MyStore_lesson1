@@ -44,8 +44,7 @@ public class UserController {
         return byName.getRole().name();
     }
 
-    @PostMapping("/new")
-
+    @PostMapping(value = "/new")
     public String saveUser(UserDTO userDTO, Model model) {
         if (userService.save(userDTO)) {
             return "redirect:/users";
