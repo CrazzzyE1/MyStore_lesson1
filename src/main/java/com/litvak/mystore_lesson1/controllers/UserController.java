@@ -23,14 +23,14 @@ public class UserController {
 
     @GetMapping
     public String userList(Model model) {
-        model.addAttribute("users", new UserDTO());
+        model.addAttribute("users", userService.getAllUsers());
         return "userList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new")
     public String newUser(Model model) {
-        model.addAttribute("user", userService.getAllUsers());
+        model.addAttribute("user", new UserDTO());
         return "user";
     }
 
