@@ -3,6 +3,7 @@ package com.litvak.mystore_lesson1.config;
 import com.litvak.mystore_lesson1.domain.Role;
 import com.litvak.mystore_lesson1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -24,20 +25,21 @@ import javax.persistence.Basic;
 @EnableAspectJAutoProxy
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    final
-    UserService userService;
 
-    public SecurityConfig(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    private UserService userService;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    @Basic
-    private AuthenticationProvider authenticationProvider() {
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        initUserService();
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
@@ -68,5 +70,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .and()
                 .csrf().disable();
+    }
+    private void initUserService(){
+        if(userService == null){
+            userService = applicationContext.getBean(UserService.class);
+        }
     }
 }
