@@ -40,9 +40,15 @@ public class Utilities {
             JSONObject jsonObj = jsonArr.getJSONObject(i);
             NewsItem newsItem = new NewsItem();
             newsItem.setTitle(jsonObj.getString("title"));
-            newsItem.setDescription(jsonObj.getString("description"));
+            try {
+                newsItem.setDescription(jsonObj.getString("description"));
+                newsItem.setUrlToImage(jsonObj.getString("urlToImage"));
+            } catch (Exception e) {
+                newsItem.setDescription("NONE");
+                newsItem.setUrlToImage("NONE");
+            }
             newsItem.setUrl(jsonObj.getString("url"));
-            newsItem.setUrlToImage(jsonObj.getString("urlToImage"));
+
             news.add(newsItem);
         }
         return news;
