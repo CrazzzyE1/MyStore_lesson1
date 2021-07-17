@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -110,5 +107,15 @@ public class BucketServiceImpl implements BucketService {
         orderService.saveOrder(order);
         bucket.getProducts().clear();
         bucketRepository.save(bucket);
+    }
+
+    @Override
+    @Transactional
+    public void removeProductFromBucket(Long id, String name) {
+        User user = userService.findByName(name);
+        Bucket bucket = user.getBucket();
+        List<Product> products = bucket.getProducts();
+        Optional<Product> product = products.stream().filter(value -> value.getId().equals(id)).findFirst();
+        products.remove(product.orElse(null));
     }
 }

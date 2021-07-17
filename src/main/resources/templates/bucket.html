@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bucket</title>
@@ -22,7 +22,9 @@
         <td th:text="${detail.amount}">2</td>
         <td th:text="${detail.price}">11.0</td>
         <td th:text="${detail.sum}">22</td>
-        <td><a href="#">Remove</a></td>
+        <td><a th:href="@{/bucket/remove/{id}(
+        id = ${detail.productId}
+        )}">Remove</a></td>
     </tr>
 </table>
 
