@@ -9,18 +9,28 @@ import java.util.List;
 
 @Service
 public class NewsServiceImpl implements NewsService {
-    private List<NewsItem> news = Utilities.getNews();
+    private List<NewsItem> news;
 
     public NewsServiceImpl() throws IOException {
     }
 
     @Override
     public NewsItem getRandomNewsItem() {
+        try {
+            news = Utilities.getNews();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return news.get((int) (Math.random() * (news.size())));
     }
 
     @Override
     public List<NewsItem> getAllNews() {
+        try {
+            news = Utilities.getNews();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return news;
     }
 }
