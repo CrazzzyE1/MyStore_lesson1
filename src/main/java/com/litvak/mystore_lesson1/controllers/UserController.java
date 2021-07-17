@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -23,7 +24,9 @@ public class UserController {
 
     @GetMapping
     public String userList(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+        List<User> userList = userService.getAllUsers();
+        System.out.println(userList);
+        model.addAttribute("users", userList);
         return "userList";
     }
 
