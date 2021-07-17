@@ -3,7 +3,6 @@ package com.litvak.mystore_lesson1.controllers;
 import com.litvak.mystore_lesson1.domain.User;
 import com.litvak.mystore_lesson1.dto.UserDTO;
 import com.litvak.mystore_lesson1.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping("/list")
     public String userList(Model model) {
         model.addAttribute("users", userService.getAll());
         return "userList";
