@@ -14,7 +14,7 @@ logging:
     org.springframework.web: DEBUG
     org.springframework.ws: DEBUG
 server:
-  hostname: localhost
+  hostname: https://my-amazon-store.herokuapp.com/
   port: ${PORT:8080}
 mail:
   server:
