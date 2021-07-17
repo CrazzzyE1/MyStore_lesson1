@@ -18,4 +18,6 @@ public interface UserService extends UserDetailsService {
     void updateProfile(UserDTO userDTO);
 
     boolean activateUser(String activateCode);
+
+    List<User> getAllUsers();
 }

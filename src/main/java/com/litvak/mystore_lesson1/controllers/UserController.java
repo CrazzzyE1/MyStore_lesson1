@@ -30,7 +30,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new")
     public String newUser(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", userService.getAllUsers());
         return "user";
     }
 
