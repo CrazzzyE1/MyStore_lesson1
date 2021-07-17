@@ -21,9 +21,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public String userList(Model model) {
-        model.addAttribute("users", userService.getAll());
+        model.addAttribute("users", new UserDTO());
         return "userList";
     }
 
