@@ -13,8 +13,8 @@
         <td>Email</td>
     </tr>
     <tr th:each="user : ${users}">
-        <td>name</td>
-        <td>mail</td>
+        <td th:text="${user.username}">Koko</td>
+        <td th:text="${user.email}">koko@email</td>
     </tr>
 </table>
 <a th:href="@{/users/new}">Add new</a>
