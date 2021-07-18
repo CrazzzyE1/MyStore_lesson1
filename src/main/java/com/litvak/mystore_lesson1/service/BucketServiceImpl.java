@@ -28,7 +28,7 @@ public class BucketServiceImpl implements BucketService {
     }
 
     @Override
-    @javax.transaction.Transactional
+    @Transactional
     public Bucket createBucket(User user, List<Long> productIds) {
         Bucket bucket = new Bucket();
         bucket.setUser(user);

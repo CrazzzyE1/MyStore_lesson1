@@ -1,7 +1,6 @@
 package com.litvak.mystore_lesson1.controllers;
 import com.litvak.mystore_lesson1.domain.NewsItem;
 import com.litvak.mystore_lesson1.service.NewsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +13,9 @@ import java.util.List;
 @RequestMapping("/news")
 public class NewsController {
 
-    NewsService newsService;
+    private final NewsService newsService;
 
-    @Autowired
-    public void setNewsService(NewsService newsService) {
+    public NewsController(NewsService newsService) {
         this.newsService = newsService;
     }
 

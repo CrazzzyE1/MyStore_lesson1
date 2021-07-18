@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -24,8 +23,7 @@ public class UserController {
 
     @GetMapping
     public String userList(Model model) {
-        List<UserDTO> userList = userService.getAll();
-        model.addAttribute("users", userList);
+        model.addAttribute("users", userService.getAll());
         return "userList";
     }
 
@@ -54,6 +52,7 @@ public class UserController {
         }
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
     public String profileUser(Model model, Principal principal) {
         if (principal == null) {
@@ -69,9 +68,11 @@ public class UserController {
         return "profile";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/profile")
     public String updateProfileUser(UserDTO dto, Model model, Principal principal) {
-        if (principal == null || !Objects.equals(principal.getName(), dto.getUsername())) {
+        if (principal == null
+                || !Objects.equals(principal.getName(), dto.getUsername())) {
             throw new RuntimeException("You are not authorize");
         }
         if (dto.getPassword() != null

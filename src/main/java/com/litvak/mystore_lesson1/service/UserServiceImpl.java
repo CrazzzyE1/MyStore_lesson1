@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @javax.transaction.Transactional
+    @Transactional
     public boolean save(UserDTO userDTO) {
         if (!Objects.equals(userDTO.getPassword(), userDTO.getMatchingPassword())) {
             throw new RuntimeException("Bad password");
@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public List<UserDTO> getAll() {
         return userRepository.findAll().stream()
                 .map(this::toDto)
@@ -116,7 +115,7 @@ public class UserServiceImpl implements UserService {
         }
     }
     @Override
-    @javax.transaction.Transactional
+    @Transactional
     public boolean activateUser(String activateCode) {
         if(activateCode == null || activateCode.isEmpty()){
             return false;

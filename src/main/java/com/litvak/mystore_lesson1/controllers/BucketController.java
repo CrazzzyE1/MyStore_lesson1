@@ -21,7 +21,6 @@ public class BucketController {
         this.bucketService = bucketService;
     }
 
-    //    @GetMapping("/bucket")
     @GetMapping
     public String aboutBucket(Model model, Principal principal) {
         if (principal == null) {
@@ -33,7 +32,6 @@ public class BucketController {
         return "bucket";
     }
 
-    //    @PostMapping("/bucket")
     @PostMapping
     public String commitBucket(Principal principal) {
         if (principal != null) {

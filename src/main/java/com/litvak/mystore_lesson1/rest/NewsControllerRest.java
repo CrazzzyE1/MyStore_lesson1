@@ -1,6 +1,5 @@
 package com.litvak.mystore_lesson1.rest;
 
-
 import com.litvak.mystore_lesson1.domain.NewsItem;
 import com.litvak.mystore_lesson1.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
